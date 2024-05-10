@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @onready var head = $Head
 @onready var feet = $Feet
+@onready var weapon_pos = $Head/weapon_pos
 
 
 const FEET_HEIGHT = 0.0
@@ -23,6 +24,12 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	var weapon = preload("res://weapon.tscn")
+	var current_weapon = weapon.instantiate()
+	current_weapon.transform = weapon_pos.transform
+	weapon_pos.add_child(current_weapon)
+	
 
 func _input(event):
 	if event is InputEventMouseMotion:
