@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://mb2oikmncc24"]
+
+[ext_resource type="Script" path="res://bullet body.gd" id="1_ok1ik"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_x2lyj"]
+bounce = 0.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lyrl0"]
+radius = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixmx8"]
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ffpbv"]
+material = SubResource("StandardMaterial3D_ixmx8")
+
+[node name="bullet" type="Node3D"]
+
+[node name="bullet body" type="RigidBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_x2lyj")
+gravity_scale = 0.2
+contact_monitor = true
+script = ExtResource("1_ok1ik")
+
+[node name="collider" type="CollisionShape3D" parent="bullet body"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+shape = SubResource("SphereShape3D_lyrl0")
+
+[node name="mesh" type="MeshInstance3D" parent="bullet body/collider"]
+mesh = SubResource("SphereMesh_ffpbv")
