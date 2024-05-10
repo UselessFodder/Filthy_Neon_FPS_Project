@@ -20,5 +20,5 @@ func _physics_process(delta):
 	pass
 
 func push_bullet(direction):
-	apply_impulse(direction * -SPEED)
+	#apply_impulse(direction * -SPEED)
 	print("Bullet direction: %s" % (transform.basis.z.normalized() * -SPEED))
