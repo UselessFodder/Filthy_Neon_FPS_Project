@@ -64,7 +64,10 @@ func _physics_process(delta):
 		
 	# Check for shooting
 	if Input.is_action_just_pressed("primary fire"):
-		shoot()
+
+		var current_weapon = weapon_pos.get_child(0)
+		var origin = head.global_transform
+		current_weapon.shoot(origin)
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -79,18 +82,18 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-func shoot():
-	var bullet = preload("res://bullet.tscn")
-	var new_bullet = bullet.instantiate()
-	get_parent().add_child(new_bullet)
-	print("Bullet added successfully")
-
-
-	# Set the bullet's position
-	new_bullet.global_transform.origin = head.global_transform.origin + head.global_transform.basis.z.normalized() * -1
-
-	# Set bullet's rotation to match the head's
-	
-	#new_bullet.get_child(0).apply_impulse(transform.basis.z * -SPEED)
-	new_bullet.get_child(0).push_bullet(transform.basis.z)
-	new_bullet.global_transform.basis.z = head.global_transform.basis.z
+#func shoot():
+#	var bullet = preload("res://bullet.tscn")
+#	var new_bullet = bullet.instantiate()
+#	get_parent().add_child(new_bullet)
+#	print("Bullet added successfully")
+#
+#
+#	# Set the bullet's position
+#	new_bullet.global_transform.origin = head.global_transform.origin + head.global_transform.basis.z.normalized() * -1
+#
+#	# Set bullet's rotation to match the head's
+#
+#	#new_bullet.get_child(0).apply_impulse(transform.basis.z * -SPEED)
+#	new_bullet.get_child(0).push_bullet(transform.basis.z)
+#	new_bullet.global_transform.basis.z = head.global_transform.basis.z
