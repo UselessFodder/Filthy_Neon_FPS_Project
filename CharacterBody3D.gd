@@ -16,6 +16,9 @@ var current_speed = SPEED
 var run_speed = SPEED * 3
 var crouch_speed = SPEED * 0.25
 
+#prep automatic var
+var reset_fire = true
+
 const JUMP_VELOCITY = 4.5
 const MOUSE_SENS = 0.4
 
@@ -63,11 +66,20 @@ func _physics_process(delta):
 		feet.position.y = FEET_HEIGHT
 		
 	# Check for shooting
-	if Input.is_action_just_pressed("primary fire"):
-
+	if Input.is_action_pressed("primary fire"):
 		var current_weapon = weapon_pos.get_child(0)
 		var origin = head.global_transform
-		current_weapon.shoot(origin)
+		
+		if reset_fire == true:
+			current_weapon.shoot(origin)
+			reset_fire = false
+		
+		if current_weapon.is_automatic == true:
+			reset_fire = true
+	
+	#check for button release
+	if Input.is_action_just_released("primary fire"):
+		reset_fire = true
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.

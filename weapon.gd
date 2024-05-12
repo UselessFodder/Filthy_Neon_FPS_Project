@@ -1,6 +1,6 @@
 class_name Weapon extends Node3D
 
-@export var is_automatic = false
+@export var is_automatic = true
 const SPEED = 20
 
 # Called when the node enters the scene tree for the first time.
