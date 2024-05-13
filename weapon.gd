@@ -1,8 +1,8 @@
 class_name Weapon extends Node3D
 
 @export var is_automatic = true
-const SPEED = 20
-const RATE_OF_FIRE = 120.0
+const SPEED = 50
+const RATE_OF_FIRE = 300.0
 
 var ready_to_fire = true
 

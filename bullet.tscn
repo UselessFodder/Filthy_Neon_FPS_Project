@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://bullet body.gd" id="1_ok1ik"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_x2lyj"]
-friction = 0.2
-bounce = 0.5
+friction = 0.1
+bounce = 0.7
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lyrl0"]
 radius = 0.2
@@ -20,13 +20,15 @@ material = SubResource("StandardMaterial3D_ixmx8")
 [node name="bullet" type="Node3D"]
 
 [node name="bullet body" type="RigidBody3D" parent="."]
+mass = 0.25
 physics_material_override = SubResource("PhysicsMaterial_x2lyj")
+continuous_cd = true
 max_contacts_reported = 10
 contact_monitor = true
 script = ExtResource("1_ok1ik")
 
 [node name="collider" type="CollisionShape3D" parent="bullet body"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 shape = SubResource("SphereShape3D_lyrl0")
 
 [node name="mesh" type="MeshInstance3D" parent="bullet body/collider"]
